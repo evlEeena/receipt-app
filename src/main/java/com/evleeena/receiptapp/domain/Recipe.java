@@ -2,6 +2,7 @@ package com.evleeena.receiptapp.domain;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -30,6 +31,9 @@ public class Recipe {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingrediens;
 
     public Long getId() {
         return id;
@@ -124,6 +128,7 @@ public class Recipe {
                 ", directions='" + directions + '\'' +
                 ", image=" + Arrays.toString(image) +
                 ", notes=" + notes +
+                ", ingrediens=" + ingrediens +
                 '}';
     }
 }
