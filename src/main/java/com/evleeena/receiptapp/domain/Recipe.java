@@ -23,8 +23,9 @@ public class Recipe {
     private String url;
 
     private String directions;
-    //todo
-    // private Difficulty difficulty;
+
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
 
     @Lob
     private Byte[] image;
@@ -33,7 +34,7 @@ public class Recipe {
     private Notes notes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingrediens;
+    private Set<Ingredient> ingredients;
 
     public Long getId() {
         return id;
@@ -99,6 +100,14 @@ public class Recipe {
         this.directions = directions;
     }
 
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public Byte[] getImage() {
         return image;
     }
@@ -115,6 +124,14 @@ public class Recipe {
         this.notes = notes;
     }
 
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -126,9 +143,10 @@ public class Recipe {
                 ", source='" + source + '\'' +
                 ", url='" + url + '\'' +
                 ", directions='" + directions + '\'' +
+                ", difficulty=" + difficulty +
                 ", image=" + Arrays.toString(image) +
                 ", notes=" + notes +
-                ", ingrediens=" + ingrediens +
+                ", ingredients=" + ingredients +
                 '}';
     }
 }
