@@ -1,6 +1,9 @@
 package com.evleeena.receiptapp.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class UnitOfMeasure {
@@ -10,9 +13,6 @@ public class UnitOfMeasure {
     private Long id;
 
     private String uom;
-
-    @OneToOne
-    private Ingredient ingredient;
 
     public Long getId() {
         return id;
@@ -28,14 +28,6 @@ public class UnitOfMeasure {
 
     public void setUom(String uom) {
         this.uom = uom;
-    }
-
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
     }
 
     @Override
