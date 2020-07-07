@@ -158,5 +158,101 @@ To serve:
 Roughly chopped cilantro
 1/2 cup sour cream thinned with 1/4 cup milk
 1 lime, cut into wedges*/
+
+        UnitOfMeasure tablespoon = getOrCreateUom("Tablespoon");
+        UnitOfMeasure teaspoon = getOrCreateUom("Teaspoon");
+        UnitOfMeasure piece = getOrCreateUom("Piece");
+        UnitOfMeasure pound = getOrCreateUom("Pound");
+        UnitOfMeasure cup = getOrCreateUom("Cup");
+
+        //2 tablespoons ancho chili powder
+        Ingredient chiliPowed = new Ingredient();
+        chiliPowed.setDescription("ancho chili powder");
+        chiliPowed.setAmount(new BigDecimal("2"));
+        chiliPowed.setUom(tablespoon);
+
+        //1 teaspoon dried oregano
+        Ingredient oregano  = new Ingredient();
+        oregano.setDescription("dried oregano");
+        oregano.setAmount(new BigDecimal("1"));
+        oregano.setUom(teaspoon);
+
+        //1 teaspoon dried cumin
+        Ingredient cumin = new Ingredient();
+        cumin.setDescription("dried cumin");
+        cumin.setAmount(new BigDecimal("1"));
+        cumin.setUom(teaspoon);
+
+        // 1 teaspoon sugar
+        Ingredient sugar = new Ingredient();
+        sugar.setDescription("sugar");
+        sugar.setAmount(new BigDecimal("1"));
+        sugar.setUom(teaspoon);
+
+        // 1/2 teaspoon salt
+        Ingredient salt = new Ingredient();
+        salt.setDescription("salt");
+        salt.setAmount(new BigDecimal("0.5"));
+        salt.setUom(teaspoon);
+
+        // 1 clove garlic, finely chopped
+        Ingredient garlic = new Ingredient();
+        garlic.setDescription("garlic");
+        garlic.setAmount(new BigDecimal("1"));
+        garlic.setUom(piece);
+
+        //1 tablespoon finely grated orange zest
+        Ingredient orangeZest = new Ingredient();
+        orangeZest.setDescription("orange zest");
+        orangeZest.setAmount(new BigDecimal("1"));
+        orangeZest.setUom(tablespoon);
+
+        // 3 tablespoons fresh-squeezed orange juice
+        Ingredient orangeJuice = new Ingredient();
+        orangeJuice.setDescription("fresh-squeezed orange juice");
+        orangeJuice.setAmount(new BigDecimal("3"));
+        orangeJuice.setUom(tablespoon);
+
+        // 2 tablespoons olive oil
+        Ingredient oliveOil = new Ingredient();
+        oliveOil.setDescription("olive oi2");
+        oliveOil.setAmount(new BigDecimal("3"));
+        oliveOil.setUom(tablespoon);
+
+        // 4 to 6 skinless, boneless chicken thighs (1 1/4 pounds)
+        Ingredient chicken = new Ingredient();
+        chicken.setDescription("skinless, boneless chicken thighs");
+        chicken.setAmount(new BigDecimal("1.25"));
+        chicken.setUom(pound);
+
+        // 8 small corn tortillas
+        Ingredient tortillas = new Ingredient();
+        tortillas.setDescription("small corn tortillas");
+        tortillas.setAmount(new BigDecimal("8"));
+        tortillas.setUom(piece);
+
+        // 3 cups packed baby arugula (3 ounces)
+        Ingredient arugula = new Ingredient();
+        arugula.setDescription("packed baby arugula");
+        arugula.setAmount(new BigDecimal("3"));
+        arugula.setUom(cup);
+
+        // 2 medium ripe avocados, sliced
+        Ingredient avocados = new Ingredient();
+        avocados.setDescription("medium ripe avocados, sliced");
+        avocados.setAmount(new BigDecimal("2"));
+        avocados.setUom(piece);
+
+        // 4 radishes, thinly sliced
+        Ingredient radishes = new Ingredient();
+        radishes.setDescription("thinly sliced radishes");
+        radishes.setAmount(new BigDecimal("4"));
+        radishes.setUom(piece);
+
+        // 1/2 pint cherry tomatoes, halved
+        Ingredient tomatoes = new Ingredient();
+        tomatoes.setDescription("cherry tomatoes, halved");
+        tomatoes.setAmount(new BigDecimal("0.5"));
+        tomatoes.setUom(piece);
     }
 }
