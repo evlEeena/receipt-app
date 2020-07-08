@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +28,10 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         Recipe guacamole = createGuacamole();
-        System.out.println("Recipe: " + guacamole);
+        System.out.println("Guacamole: " + guacamole);
+
+        Recipe chickenTacos = createChickenTacos();
+        System.out.println("Chicken tacos: " + chickenTacos);
     }
 
     private UnitOfMeasure getOrCreateUom(String uomName) {
@@ -47,6 +49,17 @@ public class DataLoader implements CommandLineRunner {
             category.setDescription("Mexican");
             return category;
         });
+
+        Recipe guacamole = new Recipe();
+        guacamole.setDescription("How to Make Perfect Guacamole");
+        guacamole.setPrepTime(10);
+        guacamole.setCookTime(10);
+        guacamole.setServings(2);
+        guacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacamole.setDifficulty(Difficulty.EASY);
+        guacamole.getCategories().add(mexican);
+        recipeRepository.save(guacamole);
+
 
         UnitOfMeasure piece = getOrCreateUom("Piece");
         UnitOfMeasure teaspoon = getOrCreateUom("Teaspoon");
@@ -117,47 +130,33 @@ public class DataLoader implements CommandLineRunner {
         guacamoleIngredients.add(radishes);
         guacamoleIngredients.add(chips);
 
-        Recipe guacamole = new Recipe();
-        guacamole.setDescription("How to Make Perfect Guacamole");
-        guacamole.setPrepTime(10);
-        guacamole.setCookTime(10);
-        guacamole.setServings(2);
-        guacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
-        guacamole.setDifficulty(Difficulty.EASY);
-        guacamole.setIngredients(guacamoleIngredients);
-        guacamole.getCategories().add(mexican);
-        recipeRepository.save(guacamole);
-
         guacamoleIngredients.forEach(i -> i.setRecipe(guacamole));
 
+        guacamole.setIngredients(guacamoleIngredients);
         mexican.setRecipes(new HashSet<>(Collections.singletonList(guacamole)));
+
         categoryRepository.save(mexican);
+        recipeRepository.save(guacamole);
 
         return guacamole;
     }
 
-    private void createChickenTacos() {
-        /*2 tablespoons ancho chili powder
-1 teaspoon dried oregano
-1 teaspoon dried cumin
-1 teaspoon sugar
-1/2 teaspoon salt
-1 clove garlic, finely chopped
-1 tablespoon finely grated orange zest
-3 tablespoons fresh-squeezed orange juice
-2 tablespoons olive oil
-4 to 6 skinless, boneless chicken thighs (1 1/4 pounds)
-To serve:
+    private Recipe createChickenTacos() {
+        Category mexican = categoryRepository.findByDescription("Mexican").orElseGet(() -> {
+            Category category = new Category();
+            category.setDescription("Mexican");
+            return category;
+        });
 
-8 small corn tortillas
-3 cups packed baby arugula (3 ounces)
-2 medium ripe avocados, sliced
-4 radishes, thinly sliced
-1/2 pint cherry tomatoes, halved
-1/4 red onion, thinly sliced
-Roughly chopped cilantro
-1/2 cup sour cream thinned with 1/4 cup milk
-1 lime, cut into wedges*/
+        Recipe tacos = new Recipe();
+        tacos.setDescription("Spicy Grilled Chicken Tacos");
+        tacos.setPrepTime(20);
+        tacos.setCookTime(15);
+        tacos.setServings(6);
+        tacos.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacos.setDifficulty(Difficulty.MODERATE);
+        tacos.getCategories().add(mexican);
+        recipeRepository.save(tacos);
 
         UnitOfMeasure tablespoon = getOrCreateUom("Tablespoon");
         UnitOfMeasure teaspoon = getOrCreateUom("Teaspoon");
@@ -172,7 +171,7 @@ Roughly chopped cilantro
         chiliPowed.setUom(tablespoon);
 
         //1 teaspoon dried oregano
-        Ingredient oregano  = new Ingredient();
+        Ingredient oregano = new Ingredient();
         oregano.setDescription("dried oregano");
         oregano.setAmount(new BigDecimal("1"));
         oregano.setUom(teaspoon);
@@ -254,5 +253,63 @@ Roughly chopped cilantro
         tomatoes.setDescription("cherry tomatoes, halved");
         tomatoes.setAmount(new BigDecimal("0.5"));
         tomatoes.setUom(piece);
+
+        // 1/4 red onion, thinly sliced
+        Ingredient onion = new Ingredient();
+        onion.setDescription("thinly sliced red onion");
+        onion.setAmount(new BigDecimal("0.25"));
+        onion.setUom(piece);
+
+        // 1/2 cup sour cream thinned with 1/4 cup milk
+        Ingredient sourCream = new Ingredient();
+        sourCream.setDescription("sour cream");
+        sourCream.setAmount(new BigDecimal("0.5"));
+        sourCream.setUom(cup);
+
+        // 1/2 cup sour cream thinned with 1/4 cup milk
+        Ingredient milk = new Ingredient();
+        milk.setDescription("milk");
+        milk.setAmount(new BigDecimal("0.25"));
+        milk.setUom(cup);
+
+        // 1 lime, cut into wedges
+        Ingredient lime = new Ingredient();
+        lime.setDescription("lime");
+        lime.setAmount(new BigDecimal("1"));
+        lime.setUom(piece);
+
+        Set<Ingredient> ingredients = new HashSet<>();
+        ingredients.add(chiliPowed);
+        ingredients.add(oregano);
+        ingredients.add(cumin);
+        ingredients.add(sugar);
+        ingredients.add(salt);
+        ingredients.add(garlic);
+        ingredients.add(orangeZest);
+        ingredients.add(orangeJuice);
+        ingredients.add(oliveOil);
+        ingredients.add(chicken);
+        ingredients.add(tortillas);
+        ingredients.add(arugula);
+        ingredients.add(avocados);
+        ingredients.add(radishes);
+        ingredients.add(tomatoes);
+        ingredients.add(onion);
+        ingredients.add(sourCream);
+        ingredients.add(milk);
+        ingredients.add(milk);
+        ingredients.add(lime);
+
+        tacos.setIngredients(ingredients);
+
+        ingredients.forEach(i -> i.setRecipe(tacos));
+
+        mexican.setRecipes(new HashSet<>(Collections.singletonList(tacos)));
+
+        categoryRepository.save(mexican);
+        recipeRepository.save(tacos);
+        recipeRepository.save(tacos);
+
+        return tacos;
     }
 }
