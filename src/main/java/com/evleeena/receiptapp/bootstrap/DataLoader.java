@@ -4,6 +4,7 @@ import com.evleeena.receiptapp.domain.*;
 import com.evleeena.receiptapp.repositories.CategoryRepository;
 import com.evleeena.receiptapp.repositories.RecipeRepository;
 import com.evleeena.receiptapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,24 +15,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
+@Slf4j
 public class DataLoader implements CommandLineRunner {
 
     @Resource
     private UnitOfMeasureRepository unitOfMeasureRepository;
-
     @Resource
     private CategoryRepository categoryRepository;
-
     @Resource
     private RecipeRepository recipeRepository;
 
     @Override
     public void run(String... args) {
         Recipe guacamole = createGuacamole();
-        System.out.println("Guacamole: " + guacamole);
+        log.debug("Guacamole: {}", guacamole);
 
         Recipe chickenTacos = createChickenTacos();
-        System.out.println("Chicken tacos: " + chickenTacos);
+        log.debug("Chicken tacos: {}", chickenTacos);
     }
 
     private UnitOfMeasure getOrCreateUom(String uomName) {
