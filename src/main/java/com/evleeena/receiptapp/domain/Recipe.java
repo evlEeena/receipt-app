@@ -1,5 +1,6 @@
 package com.evleeena.receiptapp.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@Builder
 @Entity
 public class Recipe {
     @Id
