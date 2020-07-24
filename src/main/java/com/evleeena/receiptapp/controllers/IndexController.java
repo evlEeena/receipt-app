@@ -6,14 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
-
 @Controller
 @Slf4j
 public class IndexController {
 
-    @Resource
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
+
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
+    }
 
     @RequestMapping({"", "/", "/index.html"})
     public String getIndexPage(Model model) {
