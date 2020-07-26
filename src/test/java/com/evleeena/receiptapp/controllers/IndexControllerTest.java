@@ -50,9 +50,15 @@ class IndexControllerTest {
 
     @Test
     public void getIndexPage() {
+        Recipe cake = new Recipe();
+        cake.setDescription("Chocolate Cake");
+
+        Recipe ice = new Recipe();
+        ice.setDescription("Ice cream");
+
         Set<Recipe> recipes = new HashSet<>();
-        recipes.add(Recipe.builder().description("Chocolate Cake").build());
-        recipes.add(Recipe.builder().description("Ice cream").build());
+        recipes.add(cake);
+        recipes.add(ice);
 
         when(recipeService.getAllRecipes()).thenReturn(recipes);
 

@@ -50,13 +50,14 @@ public class DataLoader implements CommandLineRunner {
             return category;
         });
 
-        Recipe guacamole = Recipe.builder()
-                .description("How to Make Perfect Guacamole")
-                .prepTime(10).cookTime(10).servings(2)
-                .url("https://www.simplyrecipes.com/recipes/perfect_guacamole/")
-                .difficulty(Difficulty.EASY)
-                .categories(Set.of(mexican))
-                .build();
+        Recipe guacamole = new Recipe();
+        guacamole.setDescription("How to Make Perfect Guacamole");
+        guacamole.setPrepTime(10);
+        guacamole.setCookTime(10);
+        guacamole.setServings(2);
+        guacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacamole.setDifficulty(Difficulty.EASY);
+        guacamole.getCategories().add(mexican);
         recipeRepository.save(guacamole);
 
 
@@ -147,13 +148,14 @@ public class DataLoader implements CommandLineRunner {
             return category;
         });
 
-        Recipe tacos = Recipe.builder().
-                description("Spicy Grilled Chicken Tacos")
-                .prepTime(20).cookTime(15).servings(6)
-                .url("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/")
-                .difficulty(Difficulty.MODERATE)
-                .categories(Set.of(mexican))
-                .build();
+        Recipe tacos = new Recipe();
+        tacos.setDescription("Spicy Grilled Chicken Tacos");
+        tacos.setPrepTime(20);
+        tacos.setCookTime(15);
+        tacos.setServings(6);
+        tacos.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacos.setDifficulty(Difficulty.MODERATE);
+        tacos.getCategories().add(mexican);
 
         recipeRepository.save(tacos);
 
